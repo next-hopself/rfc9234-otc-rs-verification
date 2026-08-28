@@ -61,11 +61,11 @@
 
     <abstract>
       <t>
-        RFC 9234 specifies how an AS receiving a route from a lateral Peer can check if route was lekaed, but doesn't specify any checks for routes received from Route Server (RS).
-        This makes quility of filtering dependent on whether the RS implements RFC 9234.
+        RFC 9234 specifies how an AS receiving a route from a lateral Peer can check if a route was leaked, but doesn't specify any checks for routes received from a Route Server (RS).
+        This makes the quality of filtering dependent on whether the RS implements RFC 9234.
       </t>
       <t>
-        This document updates RFC 9234 by adding complimentary ingress check by RS-Client.
+        This document updates RFC 9234 by adding complimentary ingress check by an RS-Client.
       </t>
     </abstract>
   </front>
@@ -75,14 +75,14 @@
       <name>Introduction</name>
 
       <t>
-        The <xref target="RFC9234"/> specifies OTC attribute and Peering Roles: Cusromer, Provider, Peer, RS, and RS-Client.
-        Section 5 of <xref target="RFC9234"/>, specifies ingress filtering based on OTC value for routes received from Peer. It says: 
+        <xref target="RFC9234"/> specifies OTC attribute and Peering Roles: Customer, Provider, Peer, RS, and RS-Client.
+        Section 5 of <xref target="RFC9234"/> specifies ingress filtering based on the OTC value for routes received from a Peer. It says:
       </t>
       <blockquote quotedFrom="RFC 9234">
         If a route with the OTC Attribute is received from a Peer (i.e., remote AS with a Peer Role) and the Attribute has a value that is not equal to the remote (i.e., Peer's) AS number, then it is a route leak and MUST be considered ineligible.
       </blockquote>
       <t>
-        For the routes received from an RS, <xref target="RFC9234"/> doesn't specify any checks, though an RS basically provides service for indirect peering, thus same procedure to a Peer should be applied.
+        For the routes received from an RS, <xref target="RFC9234"/> doesn't specify any checks, though an RS basically provides service for indirect peering, thus the same procedure to a Peer should be applied.
       </t>
       <t>
         <xref target="update"/> extends the OTC check on RS-Clients to verify that if OTC is present, its value matches the RS's AS number.
@@ -110,15 +110,15 @@
       <name>Problem Statement</name>
 
       <t>
-        A RS exists to redistribute routes between RS-Clients that peer laterally through it.
-        The <xref target="RFC9234"/> states that if route receved by RS has OTC attribute, its a route leak.
-        But if RS is non-compiant, it will accept the route without checking OTC value and redistribute it to its RS-Clients.
+        An RS exists to redistribute routes between RS-Clients that peer laterally through it.
+        <xref target="RFC9234"/> states that if a route received by an RS has the OTC attribute, it is a route leak.
+        But if the RS is non-compliant, it will accept the route without checking the OTC value and redistribute it to its RS-Clients.
       </t>
       <t>
-        If RS is implementing <xref target="RFC9234"/>, it will reject received routes if OTC is present and will add OTC attribute with value equal to its own AS (the RS's AS number) when advertising routes to its RS-Clients.
+        If the RS is implementing <xref target="RFC9234"/>, it will reject received routes if OTC is present and will add the OTC attribute with the value equal to its own AS (the RS's AS number) when advertising routes to its RS-Clients.
       </t>
       <t>
-        From the point of RS-Client, a correct route received from an RS must carry either no OTC Attribute or one equal to the RS's AS number.
+        From the point of the RS-Client, a correct route received from an RS must carry either no OTC Attribute or one equal to the RS's AS number.
         Otherwise, it's a route leak.
       </t>
       <t>
@@ -133,7 +133,7 @@
         This section updates Section 5 of <xref target="RFC9234"/> by adding a new rule for RS-Client.
       </t>
       <t>
-        If a route with the OTC Attribute is received from a RS (i.e., remote AS with a RS Role) and the Attribute has a value that is not equal to the remote (i.e., RS's) AS number, then it is a route leak and MUST be considered ineligible.
+        If a route with the OTC Attribute is received from an RS (i.e., remote AS with an RS Role) and the Attribute has a value that is not equal to the remote (i.e., RS's) AS number, then it is a route leak and MUST be considered ineligible.
       </t>
     </section>
 
@@ -141,7 +141,7 @@
       <name>Operational Considerations</name>
       <t>
         The above update in OTC processing is fully backwards compatible with <xref target="RFC9234"/>.
-        It doesn't require new version or BGP capability negotiations between implementations.
+        It doesn't require a new version or BGP capability negotiations between implementations.
       </t>
     </section>
 
