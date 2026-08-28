@@ -65,7 +65,7 @@
         This makes the quality of filtering dependent on whether the RS implements RFC 9234.
       </t>
       <t>
-        This document updates RFC 9234 by adding complimentary ingress check by an RS-Client.
+        This document updates RFC 9234 by adding a complementary ingress check by an RS-Client.
       </t>
     </abstract>
   </front>
