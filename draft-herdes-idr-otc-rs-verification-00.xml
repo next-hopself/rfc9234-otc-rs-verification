@@ -157,7 +157,7 @@
     <section anchor="security" numbered="true">
       <name>Security Considerations</name>
       <t>
-        TODO.
+        The security considerations of <xref target="RFC9234"/> Section 8 apply.
       </t>
     </section>
 
