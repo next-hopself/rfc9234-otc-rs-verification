@@ -143,6 +143,39 @@
         The above update in OTC processing is fully backwards compatible with <xref target="RFC9234"/>.
         It doesn't require a new version or BGP capability negotiations between implementations.
       </t>
+      <t>
+        There are situations where two Internet Exchange Points (IXPs) are
+        interconnected in specific ways. In some cases a peer in both of the
+        IXPs that is an RS-Client is redistributing routes between them. This
+        is often called an "Outreach" and can be used as a way to help
+        kickstart smaller IXPs with more traffic. According to this current
+        document this situation will be considered a route leak and the
+        routes learned will be considered ineligible. This behavior now matches
+        the one expected from IXP participants becoming Peers with the
+        "Outreach" AS.
+      </t>
+      <t>
+        Another situation is AS stripping. There are providers that provide
+        "Partial Transit": they connect to their customers using Layer 3
+        connections, set up BGP sessions, and then propagate their customers'
+        prefixes to IXP Route Servers, while at the same time send prefixes
+        learned from RS's to the clients. However, when they do this, they
+        remove their AS from the AS Path, for several reasons. This leads to
+        complicated relationships that if not expressed properly by both the
+        customers and these "Partial Transit" providers that perform AS Path
+        modifications can also alter the behavior that this document has on
+        route ineligibility.
+      </t>
+      <t>
+        Finally, in some Internet Exchange Points, although it is not required,
+        the Route Servers may be connected with BGP sessions between them. This
+        allows for routes learned from clients connected only to a single RS to
+        be propagated to clients connected only to another. If these BGP
+        sessions between the two RS's are set up as RS-Client and RS-Server
+        on each side, this document will consider these routes ineligible and a
+        route leak.
+      </t>
+
     </section>
 
     <!-- ================================================================= -->
