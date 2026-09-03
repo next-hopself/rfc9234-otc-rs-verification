@@ -50,6 +50,17 @@
       </address>
     </author>
 
+    <author fullname="Antonis Chariton" initials="A." surname="Chariton">
+      <organization>Cisco</organization>
+      <address>
+        <postal>
+          <city>Zurich</city>
+          <country>Switzerland</country>
+        </postal>
+        <email>acharito@cisco.com</email>
+      </address>
+    </author>
+
     <area>Routing</area>
     <workgroup>Inter-Domain Routing</workgroup>
 
