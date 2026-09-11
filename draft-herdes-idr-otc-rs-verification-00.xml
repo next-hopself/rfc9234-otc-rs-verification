@@ -154,6 +154,32 @@
         The above update in OTC processing is fully backwards compatible with <xref target="RFC9234"/>.
         It doesn't require a new version or BGP capability negotiations between implementations.
       </t>
+      <t>
+        There are IXPs that may provide additional L3 connectivity services.
+        For example, they may provide connectivity for remote IXP using a
+        dedicated L3 gateway. If other IXP members send prefixes through this
+        L3 gateway, it becomes their Provider in terms of peering
+        relationships. To solve this ambiguity, the document suggests the
+        following routing policy:
+      </t>
+      <ul spacing="normal">
+        <li>
+          If an L3 connectivity service gateway is present at an IXP, it
+          should not receive or advertise prefixes to the RS; otherwise, they
+          can be considered route leaks.
+        </li>
+        <li>
+          An IXP member who wants to use an L3 service SHOULD establish a
+          direct BGP session with the L3 gateway through the IXP's L2 matrix.
+          If BGP Roles are used in this BGP session, they MUST be set to
+          Customer and Provider, respectively.
+        </li>
+        <li>
+          The L3 gateway is not an RS, so it MUST NOT strip its ASN from the
+          AS_PATH.
+        </li>
+      </ul>
+
     </section>
 
     <!-- ================================================================= -->
