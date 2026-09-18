@@ -6,7 +6,7 @@
   <!ENTITY wj     "&#8288;">
 ]>
 <rfc ipr="trust200902"
-     docName="draft-herdes-idr-otc-rs-verification-00"
+     docName="draft-herdes-idr-otc-rs-verification-01"
      category="std"
      submissionType="IETF"
      updates="9234"
@@ -21,7 +21,7 @@
   <front>
     <title abbrev="Strict OTC Verification on RS Sessions">Strict Only to Customer (OTC) Verification on Route Server Sessions</title>
 
-    <seriesInfo name="Internet-Draft" value="draft-herdes-idr-otc-rs-verification-00" stream="IETF"/>
+    <seriesInfo name="Internet-Draft" value="draft-herdes-idr-otc-rs-verification-01" stream="IETF"/>
 
     <author fullname="Bryton Herdes" initials="B." surname="Herdes">
       <organization abbrev="Cloudflare">Cloudflare, Inc.</organization>

@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 env:
-  DRAFT: draft-herdes-idr-otc-rs-verification-00
+  DRAFT: draft-herdes-idr-otc-rs-verification-01
 
 jobs:
   build:
