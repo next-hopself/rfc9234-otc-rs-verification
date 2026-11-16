@@ -1,6 +1,6 @@
 # Strict Only to Customer (OTC) Verification on Route Server Sessions
 
-`draft-herdes-idr-otc-rs-verification`
+`draft-ietf-idr-otc-rs-verification`
 
 ## Abstract
 

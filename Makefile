@@ -1,4 +1,4 @@
-DRAFT   := draft-herdes-idr-otc-rs-verification-01
+DRAFT   := draft-ietf-idr-otc-rs-verification-00
 VENV    := .venv
 XML2RFC := $(VENV)/bin/xml2rfc
 PYTHON  ?= python3
