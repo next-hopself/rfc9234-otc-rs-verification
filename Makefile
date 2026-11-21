@@ -6,7 +6,7 @@ PYTHON  ?= python3
 # BibXML snapshots are vendored under refs/ and refreshed with `make refs`.
 # Used references are embedded in the draft so local and IETF builds need no
 # local-file or network access.
-REFS := 2119 4271 4272 5398 6793 7606 7705 7908 7947 8174 9234
+REFS := 2119 4271 4272 5398 6793 7606 7705 7908 7942 7947 8174 9234
 BIBXML := https://bib.ietf.org/public/rfc/bibxml
 
 .PHONY: all txt html clean distclean refs idnits check setup

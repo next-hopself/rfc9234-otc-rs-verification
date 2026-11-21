@@ -19,8 +19,8 @@
      xml:lang="en">
 
   <front>
-    <title abbrev="OTC Validation for BGP RS-Client Session">
-      Client-side Only to Customer (OTC) Validation on Border Gatway
+    <title abbrev="OTC Validation for RS-Client Sessions">
+      Client-side Only to Customer (OTC) Validation on Border Gateway
       Protocol (BGP) Route Server (RS) Sessions
     </title>
 
@@ -161,19 +161,65 @@
       </t>
     </section>
 
-    <section anchor="impl" numbered="true">
-      <name>Implementation Status</name>
-      <t>
-        This draft is currently implemented by FRRouting (FRR) and OpenBGPD.
-      </t>
-    </section>
-
     <!-- ================================================================= -->
     <section anchor="iana" numbered="true">
       <name>IANA Considerations</name>
       <t>
         This document has no IANA actions.
       </t>
+    </section>
+
+    <!-- ================================================================= -->
+    <section anchor="impl" numbered="true" removeInRFC="true">
+      <name>Implementation Status</name>
+      <t>
+        This section records the status of known implementations of the
+        protocol defined by this specification at the time of posting of
+        this Internet-Draft, and is based on a proposal described in
+        <xref target="RFC7942"/>.
+        The description of implementations in this section is intended to
+        assist the IETF in its decision processes in progressing drafts to
+        RFCs.
+        Please note that the listing of any individual implementation here
+        does not imply endorsement by the IETF.
+        Furthermore, no effort has been spent to verify the information
+        presented here that was supplied by IETF contributors.
+        This is not intended as, and must not be construed to be, a catalog
+        of available implementations or their features.
+        Readers are advised to note that other implementations may exist.
+      </t>
+      <t>
+        According to <xref target="RFC7942"/>, "this will allow reviewers
+        and working groups to assign due consideration to documents that
+        have the benefit of running code, which may serve as evidence of
+        valuable experimentation and feedback that have made the
+        implemented protocols more mature.
+        It is up to the individual working groups to use this information
+        as they see fit".
+      </t>
+      <t>
+        The IDR working group maintains an implementation report for this
+        document at
+        <eref target="https://wiki.ietf.org/group/idr/implementations/draft-ietf-idr-otc-rs-verification" brackets="angle"/>.
+        Known implementations of the check specified in
+        <xref target="update"/> are:
+      </t>
+      <ul spacing="normal">
+        <li>
+          <eref target="https://frrouting.org/">FRRouting (FRR)</eref>:
+          implemented, and to be released starting with FRR 10.8.
+          Licensed under the GPLv2 or later.
+          Reported to the IDR working group on 20 November 2026:
+          <eref target="https://mailarchive.ietf.org/arch/msg/idr/AE0Sn1xxRNHi38seMinfNqLfA8U/" brackets="angle"/>.
+        </li>
+        <li>
+          <eref target="https://www.openbgpd.org/">OpenBGPD</eref>:
+          to be included in the next OpenBGPD release after 9.3.
+          Licensed under the ISC (BSD-style) license.
+          Reported to the IDR working group on 19 October 2026:
+          <eref target="https://mailarchive.ietf.org/arch/msg/idr/dakmMszNXCDAoamGnOggJ-EDcHo/" brackets="angle"/>.
+        </li>
+      </ul>
     </section>
 
     <!-- ================================================================= -->
@@ -271,6 +317,25 @@
           </front>
           <seriesInfo name="RFC" value="4271"/>
           <seriesInfo name="DOI" value="10.17487/RFC4271"/>
+        </reference>
+      </references>
+
+      <references>
+        <name>Informative References</name>
+        <reference anchor="RFC7942" target="https://www.rfc-editor.org/info/rfc7942">
+          <front>
+            <title>Improving Awareness of Running Code: The Implementation Status Section</title>
+            <author fullname="Y. Sheffer" initials="Y." surname="Sheffer"/>
+            <author fullname="A. Farrel" initials="A." surname="Farrel"/>
+            <date month="July" year="2016"/>
+            <abstract>
+              <t>This document describes a simple process that allows authors of Internet-Drafts to record the status of known implementations by including an Implementation Status section. This will allow reviewers and working groups to assign due consideration to documents that have the benefit of running code, which may serve as evidence of valuable experimentation and feedback that have made the implemented protocols more mature.</t>
+              <t>This process is not mandatory. Authors of Internet-Drafts are encouraged to consider using the process for their documents, and working groups are invited to think about applying the process to all of their protocol specifications. This document obsoletes RFC 6982, advancing it to a Best Current Practice.</t>
+            </abstract>
+          </front>
+          <seriesInfo name="BCP" value="205"/>
+          <seriesInfo name="RFC" value="7942"/>
+          <seriesInfo name="DOI" value="10.17487/RFC7942"/>
         </reference>
       </references>
     </references>
