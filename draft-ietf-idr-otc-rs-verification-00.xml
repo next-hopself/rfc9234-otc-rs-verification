@@ -161,6 +161,13 @@
       </t>
     </section>
 
+    <section anchor="impl" numbered="true">
+      <name>Implementation Status</name>
+      <t>
+        This draft is currently implemented by FRRouting (FRR) and OpenBGPD.
+      </t>
+    </section>
+
     <!-- ================================================================= -->
     <section anchor="iana" numbered="true">
       <name>IANA Considerations</name>
