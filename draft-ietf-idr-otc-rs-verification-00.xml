@@ -78,7 +78,7 @@
       <t>
         BGP roles (RFC 9234) can be used for both prevention and detection of
         route leaks by enforcing appropriate configuration in topology
-        relationships. However, RFC 9234 does not specify any checks for routes
+        relationships. However, RFC 9234 does not specify any route leak check for routes
         received from Route Servers (RS), causing leak detection and mitigation
         to be dependent on whether the RS implemented BGP roles. This document
         updates RFC 9234 and defines a new check for RS clients. This new check
@@ -99,10 +99,10 @@
         If a route with the OTC Attribute is received from a Peer (i.e., remote AS with a Peer Role) and the Attribute has a value that is not equal to the remote (i.e., Peer's) AS number, then it is a route leak and MUST be considered ineligible.
       </blockquote>
       <t>
-        For the routes received from an RS, <xref target="RFC9234"/> doesn't specify any checks, though an RS basically provides service for indirect peering, thus the same procedure to a Peer should be applied.
+        For the routes received from an RS, <xref target="RFC9234"/> doesn't specify any route leak check, though an RS basically provides service for indirect peering, thus the same procedure as for a Peer should be applied.
       </t>
       <t>
-        <xref target="update"/> extends the OTC check on RS-Clients to verify that if OTC is present, its value matches the RS's AS number.
+        <xref target="update"/> extends this check to routes received from an RS, so that an RS-Client verifies that, if the OTC Attribute is present, its value matches the RS's AS number.
       </t>
 
       <section anchor="requirements" numbered="true">
@@ -127,15 +127,15 @@
 
       <t>
         An RS exists to redistribute routes between RS-Clients that peer laterally through it.
-        <xref target="RFC9234"/> states that if a route received by an RS has the OTC attribute, it is a route leak.
+        <xref target="RFC9234"/> states that if a route received by an RS from an RS-Client has the OTC attribute, it is a route leak.
         But if the RS is non-compliant, it will accept the route without checking the OTC value and redistribute it to its RS-Clients.
       </t>
       <t>
-        If the RS is implementing <xref target="RFC9234"/>, it will reject received routes if OTC is present and will add the OTC attribute with the value equal to its own AS (the RS's AS number) when advertising routes to its RS-Clients.
+        If the RS is implementing <xref target="RFC9234"/>, it will reject routes received from its RS-Clients if OTC is present and will add the OTC attribute with the value equal to its own AS (the RS's AS number) when advertising routes to its RS-Clients.
       </t>
       <t>
-        From the point of the RS-Client, a correct route received from an RS must carry either no OTC Attribute or one equal to the RS's AS number.
-        Otherwise, it's a route leak.
+        From the point of view of the RS-Client, a correct route received from an RS can only carry either no OTC Attribute or one equal to the RS's AS number.
+        Otherwise, it is a route leak.
       </t>
       <t>
         That is true of transparent and non-transparent route servers alike, since transparency affects only whether the RS appears in the AS_PATH.
@@ -156,8 +156,12 @@
     <section anchor="ops" numbered="true">
       <name>Operational Considerations</name>
       <t>
-        The above update in OTC processing is fully backwards compatible with <xref target="RFC9234"/>.
-        It doesn't require a new version or BGP capability negotiations between implementations.
+        The update in <xref target="update"/> is backwards compatible with <xref target="RFC9234"/> on the wire: it does not change the OTC Attribute or the BGP Role Capability, and it does not require any new BGP capability negotiation between implementations.
+      </t>
+      <t>
+        It does, however, change which routes an RS-Client accepts.
+        Because the role of an RS is to share routes between RS-Clients, the only valid OTC Attribute value on a route that an RS-Client receives from an RS is the RS's AS number.
+        If it does not match, the additional route leak check specified in this document will make the route ineligible.
       </t>
     </section>
 
@@ -232,6 +236,17 @@
         The imposition of the extra OTC check specified in this document
         improves route leak detection and mitigation in partial deployment
         scenarios.
+      </t>
+      <t>
+        The check in <xref target="update"/> allows an RS-Client to detect a
+        route leak propagated by an RS that does not implement the ingress
+        procedure of <xref target="RFC9234"/> and passes an existing OTC
+        Attribute through unchanged.
+        It cannot detect a route leak if the RS removes the OTC Attribute
+        before propagating the route.
+        In that case, the RS-Client adds an OTC Attribute with a value equal
+        to the RS's AS number, as specified in Section 5 of
+        <xref target="RFC9234"/>, and accepts the route.
       </t>
     </section>
 
@@ -343,8 +358,8 @@
     <section anchor="acknowledgements" numbered="false">
       <name>Acknowledgements</name>
       <t>
-        The authors would like to thank Job Snijders for his suggestions on
-        this document.
+        The authors would like to thank Job Snijders and Nick Buraglio for
+        their suggestions on this document.
       </t>
     </section>
   </back>
