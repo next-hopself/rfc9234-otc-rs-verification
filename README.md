@@ -1,4 +1,4 @@
-# Strict Only to Customer (OTC) Verification on Route Server Sessions
+# Client-side Only to Customer (OTC) Validation on BGP Route Server (RS) Sessions
 
 `draft-ietf-idr-otc-rs-verification`
 
@@ -24,8 +24,8 @@ makes no equivalent check on a route received from an RS.
 
 A route server exists to redistribute routes between clients that peer laterally
 through it, so a route reaching an RS-Client from an RS has just crossed that
-lateral exchange and the RS is the apex of its path. Such a route must therefore
-carry either no OTC Attribute or one equal to the RS's AS number. Any other
+lateral exchange and the RS is the apex of its path. Such a route can therefore
+only carry either no OTC Attribute or one equal to the RS's AS number. Any other
 value names a different AS as the apex, which means a leak occurred earlier on
 the path and the RS forwarded it on.
 
