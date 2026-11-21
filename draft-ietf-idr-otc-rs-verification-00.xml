@@ -274,5 +274,13 @@
         </reference>
       </references>
     </references>
+
+    <section anchor="acknowledgements" numbered="false">
+      <name>Acknowledgements</name>
+      <t>
+        The authors would like to thank Job Snijders for his suggestions on
+        this document.
+      </t>
+    </section>
   </back>
 </rfc>
