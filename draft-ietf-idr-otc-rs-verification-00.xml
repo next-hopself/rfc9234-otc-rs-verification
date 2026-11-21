@@ -19,8 +19,8 @@
      xml:lang="en">
 
   <front>
-    <title abbrev="OTC Validation for BGP RS-Client Session">
-      Client-side Only to Customer (OTC) Validation on Border Gatway
+    <title abbrev="OTC Validation for RS-Client Sessions">
+      Client-side Only to Customer (OTC) Validation on Border Gateway
       Protocol (BGP) Route Server (RS) Sessions
     </title>
 
