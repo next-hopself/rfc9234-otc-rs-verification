@@ -342,8 +342,8 @@
     <section anchor="acknowledgements" numbered="false">
       <name>Acknowledgements</name>
       <t>
-        The authors would like to thank Job Snijders and Nick Buraglio for
-        their suggestions on this document.
+        The authors would like to thank Job Snijders, Nick Buraglio, and
+        James Bensley for their suggestions on this document.
         The authors would also like to thank Claudio Jeker and Donatas
         Abraitis for implementing this specification in OpenBGPD and
         FRRouting, respectively.
