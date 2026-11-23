@@ -1,4 +1,4 @@
-# Strict Only to Customer (OTC) Verification on Route Server Sessions
+# Route Leak Detection by RS-Client Using Only to Customer (OTC) Attribute
 
 `draft-ietf-idr-otc-rs-verification`
 
@@ -24,10 +24,10 @@ makes no equivalent check on a route received from an RS.
 
 A route server exists to redistribute routes between clients that peer laterally
 through it, so a route reaching an RS-Client from an RS has just crossed that
-lateral exchange and the RS is the apex of its path. Such a route must therefore
-carry either no OTC Attribute or one equal to the RS's AS number. Any other
-value names a different AS as the apex, which means a leak occurred earlier on
-the path and the RS forwarded it on.
+lateral exchange and the RS is the apex of its path. Such a route can therefore
+only carry either no OTC Attribute or one with a value equal to the RS's AS
+number. Any other value names a different AS as the apex, which means a leak
+occurred earlier on the path and the RS forwarded it on.
 
 The draft adds this as ingress rule 3:
 
