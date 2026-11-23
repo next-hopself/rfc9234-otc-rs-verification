@@ -19,9 +19,9 @@
      xml:lang="en">
 
   <front>
-    <title abbrev="OTC Validation for RS-Client Sessions">
-      Client-side Only to Customer (OTC) Validation on Border Gateway
-      Protocol (BGP) Route Server (RS) Sessions
+    <title abbrev="Route Leak Detection by RS-Client">
+      Route Leak Detection by RS-Client Using Only to Customer (OTC)
+      Attribute
     </title>
 
     <seriesInfo name="Internet-Draft" value="draft-ietf-idr-otc-rs-verification-00" stream="IETF"/>
@@ -76,13 +76,13 @@
 
     <abstract>
       <t>
-        BGP roles (RFC 9234) can be used for both prevention and detection of
-        route leaks by enforcing appropriate configuration in topology
-        relationships. However, RFC 9234 does not specify any checks for routes
+        RFC 9234 can be used for both prevention and detection
+        of route leaks by enforcing appropriate BGP Role configuration.
+        However, RFC 9234 does not specify any route leak check for routes
         received from Route Servers (RS), causing leak detection and mitigation
-        to be dependent on whether the RS implemented BGP roles. This document
-        updates RFC 9234 and defines a new check for RS clients. This new check
-        improves BGP roles partial deployment scenarios.
+        to be dependent on whether the RS implements BGP Roles. This document
+        updates RFC 9234 and defines a new check for RS-Clients. This new check
+        improves RFC 9234 partial deployment scenarios.
       </t>
     </abstract>
   </front>
@@ -92,17 +92,17 @@
       <name>Introduction</name>
 
       <t>
-        <xref target="RFC9234"/> specifies OTC attribute and Peering Roles: Customer, Provider, Peer, RS, and RS-Client.
+        <xref target="RFC9234"/> specifies OTC Attribute and Peering Roles: Customer, Provider, Peer, RS, and RS-Client.
         Section 5 of <xref target="RFC9234"/> specifies ingress filtering based on the OTC value for routes received from a Peer. It says:
       </t>
       <blockquote quotedFrom="RFC 9234">
         If a route with the OTC Attribute is received from a Peer (i.e., remote AS with a Peer Role) and the Attribute has a value that is not equal to the remote (i.e., Peer's) AS number, then it is a route leak and MUST be considered ineligible.
       </blockquote>
       <t>
-        For the routes received from an RS, <xref target="RFC9234"/> doesn't specify any checks, though an RS basically provides service for indirect peering, thus the same procedure to a Peer should be applied.
+        For the routes received from an RS, <xref target="RFC9234"/> doesn't specify any route leak check, though an RS basically provides service for indirect peering, thus the same procedure as for a Peer should be applied.
       </t>
       <t>
-        <xref target="update"/> extends the OTC check on RS-Clients to verify that if OTC is present, its value matches the RS's AS number.
+        <xref target="update"/> extends this check to routes received from an RS, so that an RS-Client verifies that, if the OTC Attribute is present, its value matches the RS's AS number.
       </t>
 
       <section anchor="requirements" numbered="true">
@@ -127,15 +127,15 @@
 
       <t>
         An RS exists to redistribute routes between RS-Clients that peer laterally through it.
-        <xref target="RFC9234"/> states that if a route received by an RS has the OTC attribute, it is a route leak.
+        <xref target="RFC9234"/> states that if a route received by an RS from an RS-Client has the OTC Attribute, it is a route leak.
         But if the RS is non-compliant, it will accept the route without checking the OTC value and redistribute it to its RS-Clients.
       </t>
       <t>
-        If the RS is implementing <xref target="RFC9234"/>, it will reject received routes if OTC is present and will add the OTC attribute with the value equal to its own AS (the RS's AS number) when advertising routes to its RS-Clients.
+        If the RS implements <xref target="RFC9234"/>, it will reject routes received from its RS-Clients if the OTC Attribute is present and will add the OTC Attribute with a value equal to its own AS number when advertising routes to its RS-Clients.
       </t>
       <t>
-        From the point of the RS-Client, a correct route received from an RS must carry either no OTC Attribute or one equal to the RS's AS number.
-        Otherwise, it's a route leak.
+        From the point of view of the RS-Client, a correct route received from an RS can only carry either no OTC Attribute or one with a value equal to the RS's AS number.
+        Otherwise, it is a route leak.
       </t>
       <t>
         That is true of transparent and non-transparent route servers alike, since transparency affects only whether the RS appears in the AS_PATH.
@@ -146,7 +146,7 @@
       <name>Update to the OTC Ingress Procedure</name>
 
       <t>
-        This section updates Section 5 of <xref target="RFC9234"/> by adding a new check for RS-Client.
+        This section updates Section 5 of <xref target="RFC9234"/> by adding a new check for RS-Clients.
       </t>
       <t>
         If a route with the OTC Attribute is received from an RS (i.e., remote AS with an RS Role) and the Attribute has a value that is not equal to the remote (i.e., RS's) AS number, then it is a route leak and MUST be considered ineligible.
@@ -156,8 +156,7 @@
     <section anchor="ops" numbered="true">
       <name>Operational Considerations</name>
       <t>
-        The above update in OTC processing is fully backwards compatible with <xref target="RFC9234"/>.
-        It doesn't require a new version or BGP capability negotiations between implementations.
+        The update in <xref target="update"/> is backwards compatible with <xref target="RFC9234"/> on the wire: it does not change the OTC Attribute or the BGP Role Capability, and it does not require any new BGP capability negotiation between implementations.
       </t>
     </section>
 
@@ -226,7 +225,7 @@
     <section anchor="security" numbered="true">
       <name>Security Considerations</name>
       <t>
-        The security considerations of <xref target="RFC9234"/> Section 8 apply.
+        The security considerations in Section 8 of <xref target="RFC9234"/> apply.
       </t>
       <t>
         The imposition of the extra OTC check specified in this document
@@ -343,8 +342,11 @@
     <section anchor="acknowledgements" numbered="false">
       <name>Acknowledgements</name>
       <t>
-        The authors would like to thank Job Snijders for his suggestions on
-        this document.
+        The authors would like to thank Job Snijders and Nick Buraglio for
+        their suggestions on this document.
+        The authors would also like to thank Claudio Jeker and Donatas
+        Abraitis for implementing this specification in OpenBGPD and
+        FRRouting, respectively.
       </t>
     </section>
   </back>
